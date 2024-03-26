@@ -31,6 +31,7 @@ export const useVendedorStore = defineStore('vendedor', {
       return puntos
     },
     removePuntos(foto: Fotos) {
+      console.log('addPuntos', foto)
       if (foto.vendedor) {
         this.puntos[this.puntos.findIndex((punto) => punto.name === foto.vendedor.name)].puntos -= 3
         if (

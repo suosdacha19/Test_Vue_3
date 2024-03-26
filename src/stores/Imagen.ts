@@ -6,7 +6,8 @@ import { type Fotos } from '@/interfaces/main'
 export const useImagenStore = defineStore('imagen', {
   state: () => {
     return {
-      imagenes: [] as Fotos[]
+      imagenes: [] as Fotos[],
+      imagenSeleccionada: {} as Fotos
     }
   },
   actions: {

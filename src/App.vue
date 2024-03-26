@@ -11,7 +11,6 @@ import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
 
 const valorBuscado = ref('')
-const imagenSeleccionada = ref({} as Fotos)
 const isLoading = ref(false)
 
 const _PexelsService = new PexelsService()
@@ -22,7 +21,7 @@ const _VendedorStore = useVendedorStore()
 
 const search = async () => {
   isLoading.value = true
-  imagenSeleccionada.value = {} as Fotos
+  _ImagenStore.imagenSeleccionada = {} as Fotos
   await _PexelsService.search(valorBuscado.value)
   isLoading.value = false
 }

@@ -16,6 +16,9 @@ export default class PexelsService {
         .get('https://api.alegra.com/api/v1/sellers', {
           headers: {
             Authorization: `Basic ${this.token}`
+          },
+          params: {
+            status: 'active'
           }
         })
         .then(({ data }) => {

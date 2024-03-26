@@ -12,14 +12,13 @@ import 'vue-loading-overlay/dist/css/index.css'
 const _VendedorStore = useVendedorStore()
 const _ImagenStore = useImagenStore()
 const _AlegraService = new AlegraService()
-const imagenSeleccionada = ref({} as Fotos)
 const factura = ref({})
 const isLoading = ref(false)
 
 const rate = async (foto: Fotos) => {
-  _VendedorStore.removePuntos(imagenSeleccionada.value)
+  _VendedorStore.removePuntos(_ImagenStore.imagenSeleccionada)
   const validarGanador = _VendedorStore.addPuntos(foto)
-  imagenSeleccionada.value = foto
+  _ImagenStore.imagenSeleccionada = foto
   if (Number(validarGanador) >= 20) {
     isLoading.value = true
     factura.value = {
@@ -99,11 +98,11 @@ const rate = async (foto: Fotos) => {
     <img alt="Imagen" :src="imagen.src.medium" />
     <div
       id="like"
-      :class="`absolute bg-white/80 top-0 bottom-0 w-full ${imagenSeleccionada.id === imagen.id ? 'h-full' : 'h-0'} overflow-hidden`"
+      :class="`absolute bg-white/80 top-0 bottom-0 w-full ${_ImagenStore.imagenSeleccionada.id === imagen.id ? 'h-full' : 'h-0'} overflow-hidden`"
       @click="rate(imagen)"
     >
       <svg
-        v-if="imagenSeleccionada.id === imagen.id"
+        v-if="_ImagenStore.imagenSeleccionada.id === imagen.id"
         class="absolute text-center hover:cursor-pointer top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         xmlns="http://www.w3.org/2000/svg"
         width="5rem"
